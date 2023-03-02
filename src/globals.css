@@ -4,6 +4,46 @@
 
 @layer base {
   body {
+    text-align: center;
+
+    @apply text-neutral-dark dark:text-neutral;
     @apply bg-neutral dark:bg-neutral-dark;
+    @apply font-mono;
+  }
+
+  a {
+    font-weight: bold;
+
+    @apply text-primary dark:text-primary-dark;
+  }
+}
+
+@screen sm {
+  body {
+    @apply text-sm;
+  }
+}
+
+@screen md {
+  body {
+    @apply text-base;
+  }
+}
+
+@screen lg {
+  body {
+    @apply text-lg;
+  }
+}
+
+@screen xl {
+  body {
+    @apply text-xl;
+  }
+}
+
+@screen 2xl {
+  body {
+    @apply text-2xl;
   }
 }
