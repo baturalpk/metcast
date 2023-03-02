@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren } from "react";
-import Footer from "../Footer";
-import Navbar from "../Navbar";
+import { FC, PropsWithChildren } from 'react';
+import Footer from '../Footer';
+import Navbar from '../Navbar';
 
 const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
   return (

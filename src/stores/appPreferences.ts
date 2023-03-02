@@ -1,6 +1,6 @@
-import produce from "immer";
-import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import produce from 'immer';
+import { create } from 'zustand';
+import { devtools, persist } from 'zustand/middleware';
 
 export interface AppPreferences {
   darkModeEnabled: boolean;
@@ -37,7 +37,7 @@ const useAppPreferencesStore = create<AppPreferencesState>()(
         },
       }),
       {
-        name: "app-preferences-store",
+        name: 'app-preferences-store',
       }
     )
   )
