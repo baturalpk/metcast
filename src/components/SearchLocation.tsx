@@ -17,7 +17,7 @@ function SearchLocation() {
   return (
     <div className="container mt-[7.5%] max-w-[80%]">
       <input
-        className="p-4 w-full rounded 2xl:rounded-lg text-neutral dark:text-neutral-dark bg-neutral-dark dark:bg-neutral"
+        className="px-6 py-4 w-full rounded 2xl:rounded-lg text-neutral dark:text-neutral-dark bg-neutral-dark dark:bg-neutral"
         type="text"
         placeholder="Search Location"
         value={keyword}
@@ -29,7 +29,11 @@ function SearchLocation() {
           <ArrowPathIcon className="animate-spin mx-auto text-neutral-dark dark:text-neutral h-7 w-7 2xl:h-10 xl:w-10" />
         )}
 
-        {!isFetching && isFetched && <p className="animate-bounce">👇🏼</p>}
+        {!isFetching && isFetched && (
+          <div className="mt-6 motion-safe:animate-bounce duration-1000">
+            <p>Select a geo-location</p>👇🏼 👇🏿 👇
+          </div>
+        )}
       </div>
 
       <ul className="text-left">

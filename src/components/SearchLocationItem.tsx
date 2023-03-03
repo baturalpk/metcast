@@ -6,16 +6,19 @@ export interface SearchLocationItemProps {
 }
 
 function SearchLocationItem({
-  data: { name, latitude, longitude },
+  data: { name, latitude, longitude, country, country_code },
 }: SearchLocationItemProps) {
   return (
-    <Link href={`/forecast/${name}?lat=${latitude}&long=${longitude}`}>
+    <Link
+      className="no-underline"
+      href={`/forecast/${name}?lat=${latitude}&long=${longitude}`}
+    >
       <li
-        className="mt-2 mb-2 p-4 transition hover:scale-[.975]
+        className="mb-3 px-6 py-4 transition hover:scale-[.975]
           font-bold text-neutral dark:text-neutral-dark 
-          rounded bg-neutral-dark dark:bg-neutral"
+          rounded 2xl:rounded-lg bg-neutral-dark dark:bg-neutral"
       >
-        {name} {'>'} {latitude}, {longitude}
+        {name}, {country}({country_code}) {'@'} [{latitude}, {longitude}]
       </li>
     </Link>
   );

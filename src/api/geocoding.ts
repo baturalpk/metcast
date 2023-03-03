@@ -9,6 +9,8 @@ export interface GeoSearchResult {
   readonly name: string;
   readonly latitude: number;
   readonly longitude: number;
+  readonly country: string;
+  readonly country_code: string;
 }
 
 export async function Search(keyword: string): Promise<GeoSearchResult[]> {
