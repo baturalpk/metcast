@@ -13,6 +13,7 @@
 
   a {
     font-weight: bold;
+    text-decoration: underline;
 
     @apply text-primary dark:text-primary-dark;
   }
