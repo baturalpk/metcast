@@ -8,7 +8,6 @@ export interface AppPreferences {
 
 export interface AppPreferencesState {
   preferences: AppPreferences;
-  toggleDarkMode: () => void;
   setDarkModeEnabled: (payload: boolean) => void;
 }
 
@@ -18,14 +17,6 @@ const useAppPreferencesStore = create<AppPreferencesState>()(
       set => ({
         preferences: {
           darkModeEnabled: false,
-        },
-
-        toggleDarkMode() {
-          set(
-            produce(({ preferences }: AppPreferencesState) => {
-              preferences.darkModeEnabled = !preferences.darkModeEnabled;
-            })
-          );
         },
 
         setDarkModeEnabled(payload) {
