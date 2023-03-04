@@ -8,7 +8,11 @@ import { ArrowPathIcon } from '@heroicons/react/24/solid';
 function SearchLocation() {
   const [keyword, setKeyword] = useState('');
   const [debouncedKeyword] = useDebounce(keyword, 300);
-  const { data, isFetching, isFetched } = useQuery(
+  const {
+    data: response,
+    isFetching,
+    isFetched,
+  } = useQuery(
     ['search-location', debouncedKeyword],
     () => Search(debouncedKeyword),
     { enabled: debouncedKeyword.length >= 2 }
@@ -37,7 +41,7 @@ function SearchLocation() {
       </div>
 
       <ul className="text-left">
-        {(data ?? []).map(loc => (
+        {(response?.data.results ?? []).map(loc => (
           <SearchLocationItem key={loc.id} data={loc} />
         ))}
       </ul>

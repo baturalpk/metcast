@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const client = axios.create({
   baseURL: 'https://geocoding-api.open-meteo.com/v1/',
@@ -13,12 +13,24 @@ export interface GeoSearchResult {
   readonly country_code: string;
 }
 
-export async function Search(keyword: string): Promise<GeoSearchResult[]> {
-  const { data } = await client.get('/search', {
+export interface SearchResponse {
+  readonly results: GeoSearchResult[];
+}
+
+export async function Search(
+  keyword: string,
+  count?: number
+): Promise<AxiosResponse<SearchResponse>> {
+  const resp = await client.get<SearchResponse>('/search', {
     params: {
       name: keyword,
-      count: 5,
+      count: count ?? 5,
     },
   });
-  return data.results as GeoSearchResult[];
+  return resp;
+}
+
+export interface ErrorResponse {
+  error: boolean;
+  reason: string;
 }
