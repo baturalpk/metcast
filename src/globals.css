@@ -8,6 +8,7 @@
 
     @apply text-neutral-dark dark:text-neutral;
     @apply bg-neutral dark:bg-neutral-dark;
+    @apply border-neutral-dark dark:border-neutral;
     @apply font-mono;
   }
 
@@ -16,6 +17,10 @@
     text-decoration: underline;
 
     @apply text-primary dark:text-primary-dark;
+  }
+
+  svg {
+    @apply fill-primary dark:fill-primary-dark
   }
 }
 

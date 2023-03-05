@@ -3,12 +3,22 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     colors: {
-      neutral: '#f9f7f3',
-      'neutral-dark': '#202934',
-      primary: '#0d2532',
-      'primary-dark': '#44b5fd',
+      neutral: '#f2eada',
+      'neutral-dark': '#0d1014',
+      primary: '#4169e1',
+      'primary-dark': '#e66322',
     },
-    extend: {},
+    extend: {
+      animation: {
+        updown: 'updown 2s ease-in-out infinite',
+      },
+      keyframes: {
+        updown: {
+          '0%, 100%': { transform: 'translateY(-0.5rem)' },
+          '50%': { transform: 'translateY(0.5rem)' },
+        },
+      },
+    },
   },
   plugins: [],
 };

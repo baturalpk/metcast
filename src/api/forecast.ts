@@ -6,7 +6,7 @@ const client = axios.create({
 
 const extractISODateString = (date: Date) => date.toISOString().split('T')[0];
 
-interface Daily {
+export interface Daily {
   time: string[];
   temperature_2m_max: number[];
   temperature_2m_min: number[];
@@ -14,10 +14,11 @@ interface Daily {
   apparent_temperature_min: number[];
   precipitation_probability_max: number[];
   precipitation_probability_mean: number[];
+  windspeed_10m_max: number[];
   weathercode: number[];
 }
 
-interface DailyUnits {
+export interface DailyUnits {
   time: string;
   temperature_2m_max: string;
   temperature_2m_min: string;
@@ -26,10 +27,11 @@ interface DailyUnits {
   precipitation_probability_max: string;
   precipitation_probability_min: string;
   precipitation_probability_mean: string;
+  windspeed_10m_max: string;
   weathercode: string;
 }
 
-interface CurrentWeather {
+export interface CurrentWeather {
   time: string;
   temperature: number;
   windspeed: number;
@@ -72,6 +74,7 @@ export async function GetDailyForecastDataFor(
         'precipitation_probability_max',
         'precipitation_probability_min',
         'precipitation_probability_mean',
+        'windspeed_10m_max',
         'weathercode',
       ],
     },
@@ -79,7 +82,7 @@ export async function GetDailyForecastDataFor(
   return resp;
 }
 
-interface Hourly {
+export interface Hourly {
   time: string[];
   temperature_2m: number[];
   relativehumidity_2m: number[];
@@ -92,7 +95,7 @@ interface Hourly {
   weathercode: number[];
 }
 
-interface HourlyUnits {
+export interface HourlyUnits {
   time: string;
   temperature_2m: string;
   relativehumidity_2m: string;
