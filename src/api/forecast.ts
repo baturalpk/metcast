@@ -4,19 +4,50 @@ const client = axios.create({
   baseURL: 'https://api.open-meteo.com/v1/',
 });
 
+const extractISODateString = (date: Date) => date.toISOString().split('T')[0];
+
+interface Daily {
+  time: string[];
+  temperature_2m_max: number[];
+  temperature_2m_min: number[];
+  apparent_temperature_max: number[];
+  apparent_temperature_min: number[];
+  precipitation_probability_max: number[];
+  precipitation_probability_mean: number[];
+  weathercode: number[];
+}
+
+interface DailyUnits {
+  time: string;
+  temperature_2m_max: string;
+  temperature_2m_min: string;
+  apparent_temperature_max: string;
+  apparent_temperature_min: string;
+  precipitation_probability_max: string;
+  precipitation_probability_min: string;
+  precipitation_probability_mean: string;
+  weathercode: string;
+}
+
+interface CurrentWeather {
+  time: string;
+  temperature: number;
+  windspeed: number;
+  winddirection: number;
+  weathercode: number;
+}
+
 export interface DailyForecastResponse {
   readonly latitude: number;
   readonly longitude: number;
-  readonly elevation: string;
-  readonly utc_offset_seconds: string;
+  readonly elevation: number;
+  readonly utc_offset_seconds: number;
   readonly timezone: string;
   readonly timezone_abbreviation: string;
-  readonly daily: string;
-  readonly daily_units: string;
-  readonly current_weather: string;
+  readonly daily: Daily;
+  readonly daily_units: DailyUnits;
+  readonly current_weather: CurrentWeather;
 }
-
-const extractISODateString = (date: Date) => date.toISOString().split('T')[0];
 
 export async function GetDailyForecastDataFor(
   latitude: string | number,
@@ -48,16 +79,41 @@ export async function GetDailyForecastDataFor(
   return resp;
 }
 
+interface Hourly {
+  time: string[];
+  temperature_2m: number[];
+  relativehumidity_2m: number[];
+  apparent_temperature: number[];
+  cloudcover: number[];
+  windspeed_10m: number[];
+  winddirection_10m: number[];
+  windgusts_10m: number[];
+  precipitation_probability: number[];
+  weathercode: number[];
+}
+
+interface HourlyUnits {
+  time: string;
+  temperature_2m: string;
+  relativehumidity_2m: string;
+  apparent_temperature: string;
+  cloudcover: string;
+  windspeed_10m: string;
+  winddirection_10m: string;
+  windgusts_10m: string;
+  precipitation_probability: string;
+  weathercode: string;
+}
+
 export interface HourlyForecastResponse {
   readonly latitude: number;
   readonly longitude: number;
-  readonly elevation: string;
-  readonly utc_offset_seconds: string;
+  readonly elevation: number;
+  readonly utc_offset_seconds: number;
   readonly timezone: string;
   readonly timezone_abbreviation: string;
-  readonly hourly: string;
-  readonly hourly_units: string;
-  readonly current_weather: string;
+  readonly hourly: Hourly;
+  readonly hourly_units: HourlyUnits;
 }
 
 export async function GetTodaysHourlyForecastDataFor(
@@ -71,7 +127,7 @@ export async function GetTodaysHourlyForecastDataFor(
       latitude,
       longitude,
       timezone: tz ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
-      current_weather: true,
+      current_weather: false,
       start_date: today,
       end_date: today,
       hourly: [
