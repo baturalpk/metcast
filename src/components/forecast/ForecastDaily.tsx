@@ -7,9 +7,10 @@ import CurrentWeatherIcon from './CurrentWeatherIcon';
 import { InterpretWeatherCode } from '@/utils/weather';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import CurrentWeatherDetails from './CurrentWeatherDetails';
+import DailyWeatherInfoCard from './DailyWeatherInfoCard';
 
 const Container: FC<PropsWithChildren> = ({ children }) => (
-  <div className="container mx-auto w-[65%] my-4 p-4 border-4 rounded-2xl">
+  <div className="container mx-auto w-[90%] sm:w-[65%] my-4 p-4 border-4 rounded-2xl">
     {children}
   </div>
 );
@@ -58,7 +59,7 @@ function ForecastDaily() {
     );
   }
 
-  const { current_weather, daily_units } = response.data;
+  const { current_weather, daily_units, daily } = response.data;
   const weatherStatus = InterpretWeatherCode(
     response.data.current_weather.weathercode
   );
@@ -67,7 +68,7 @@ function ForecastDaily() {
     <Container>
       <div className="flex flex-col items-center justify-evenly md:flex-row">
         <CurrentWeatherIcon
-          className="w-32 p-2 flex-none motion-safe:animate-updown"
+          className="w-32 p-2 flex-none motion-safe:animate-updown hover:animate-[spin_0.5s]"
           status={weatherStatus}
         />
         <CurrentWeatherDetails
@@ -78,7 +79,24 @@ function ForecastDaily() {
           temperatureUnit={daily_units.temperature_2m_max}
         />
       </div>
-      <div className="">{'TODO: 5 days summary'}</div>
+      <div className="grid grid-cols-1 justify-center xl:grid-cols-2 2xl:grid-cols-3 gap-4 m-4">
+        {daily.time.map((v, i) => (
+          <DailyWeatherInfoCard
+            key={i}
+            time={new Date(v)}
+            dominantStatus={InterpretWeatherCode(daily.weathercode[i])}
+            maxTemp={daily.temperature_2m_max[i]}
+            minTemp={daily.temperature_2m_min[i]}
+            maxApparentTemp={daily.apparent_temperature_max[i]}
+            minApparentTemp={daily.apparent_temperature_min[i]}
+            meanPrecProb={daily.precipitation_probability_mean[i]}
+            maxWindspeed={daily.windspeed_10m_max[i]}
+            temperatureUnit={daily_units.temperature_2m_max}
+            speedUnit={daily_units.windspeed_10m_max}
+            precipitationUnit={daily_units.precipitation_probability_max}
+          />
+        ))}
+      </div>
     </Container>
   );
 }

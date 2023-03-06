@@ -14,7 +14,7 @@ function ForecastDetails(props: CurrentWeatherDetailsProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6 py-6 text-left">
-      <p className="font-bold text-primary dark:text-primary-dark">
+      <p className="text-center md:text-left text-2xl font-bold text-primary dark:text-primary-dark">
         {WeatherDescription[props.status]}
       </p>
       <p className="">

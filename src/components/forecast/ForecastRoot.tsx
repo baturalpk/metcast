@@ -17,9 +17,7 @@ function ForecastRoot({
   return (
     <context.Provider value={{ latitude, longitude }}>
       <div className="mt-8 mb-16">
-        <h1 className="text-xl md:text-2xl 2xl:text-4xl font-bold">
-          {locationName}
-        </h1>
+        <h1 className="text-3xl 2xl:text-4xl font-bold">{locationName}</h1>
         <ForecastDaily />
       </div>
     </context.Provider>
