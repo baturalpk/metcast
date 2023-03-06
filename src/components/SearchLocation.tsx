@@ -19,7 +19,7 @@ function SearchLocation() {
   );
 
   return (
-    <div className="container mt-[7.5%] max-w-[80%]">
+    <div className="container max-w-[80%]">
       <input
         className="px-6 py-4 w-full rounded 2xl:rounded-lg text-neutral dark:text-neutral-dark bg-neutral-dark dark:bg-neutral"
         type="text"
