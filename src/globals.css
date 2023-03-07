@@ -20,7 +20,7 @@
   }
 
   svg {
-    @apply fill-primary dark:fill-primary-dark
+    @apply fill-primary dark:fill-primary-dark;
   }
 }
 

@@ -11,7 +11,9 @@ function SearchLocationItem({
   return (
     <Link
       className="no-underline"
-      href={`/forecast/${name}?lat=${latitude}&long=${longitude}`}
+      href={`/forecast/${
+        name + ', ' + country
+      }?lat=${latitude}&long=${longitude}`}
     >
       <li
         className="mb-3 px-6 py-4 transition hover:scale-[.975]
