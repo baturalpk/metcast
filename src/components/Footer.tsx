@@ -24,8 +24,8 @@ const Footer = () => {
       </Link>
       <p>
         {new Date().getFullYear()} -{' '}
-        <Link href="https://baturalpk.dev/" target="_blank">
-          baturalpk.dev
+        <Link href="https://baturalp.dev/" target="_blank">
+          baturalp.dev
         </Link>
       </p>
     </div>
